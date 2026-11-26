@@ -1,0 +1,43 @@
+# main 브랜치에 올리면 작업창 파일을 GitHub Pages 에 배포하고,
+# Pages 주소를 넣은 manifest.xml 을 자동으로 만들어 함께 올린다.
+name: Deploy add-in (GitHub Pages)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: pages
+        uses: actions/configure-pages@v5
+      - name: Build site + manifest.xml
+        run: |
+          BASE="${{ steps.pages.outputs.base_url }}"
+          BASE="${BASE%/}"
+          mkdir -p _site
+          cp -r index.html taskpane.html taskpane.js taskpane.css help.html assets .nojekyll _site/
+          sed "s#__BASE__#${BASE}#g" manifest.template.xml > _site/manifest.xml
+          if grep -q "__BASE__" _site/manifest.xml; then echo "manifest에 __BASE__ 가 남아 있습니다"; exit 1; fi
+          python3 -c "import xml.dom.minidom; xml.dom.minidom.parse('_site/manifest.xml')"
+          echo "manifest: ${BASE}/manifest.xml" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4

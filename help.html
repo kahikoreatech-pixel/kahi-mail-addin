@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KAHI 메일 도우미 · 사용 안내</title>
+<link rel="stylesheet" href="taskpane.css">
+<style>main{max-width:760px;margin:0 auto;padding:20px}h1{font-size:20px;margin:0 0 6px}h2{font-size:15px;margin:18px 0 6px;color:var(--navy)}ol,ul{padding-left:20px}code{background:var(--soft);padding:1px 5px;border-radius:4px}</style>
+</head>
+<body>
+<main>
+<h1>KAHI 메일 도우미 (Outlook 추가 기능)</h1>
+<p class="muted">공유 메일함 sunnyahn@coreatech.kr 의 메일을 열면 오른쪽 창에 그 메일의 <b>국문 번역 · 요약 · 확인 필요사항(회신 여부·할 일·기한)</b>과 크리에이터 정보를 보여 줍니다. 메일을 읽기만 하고 수정·이동·발송하지 않습니다.</p>
+
+<h2>1. Outlook 에 추가 (각자 한 번)</h2>
+<ol>
+  <li>Outlook 웹에서 <a href="https://aka.ms/olksideload" target="_blank" rel="noopener">aka.ms/olksideload</a> 를 엽니다. (‘추가 기능’ 창이 열립니다)</li>
+  <li><b>내 추가 기능</b> → 맨 아래 <b>사용자 지정 추가 기능</b> → <b>사용자 지정 추가 기능 추가 → URL에서 추가</b></li>
+  <li>이 주소를 넣습니다: <code id="mf">manifest.xml</code></li>
+  <li>설치 확인 창에서 <b>설치</b>를 누릅니다.</li>
+</ol>
+<p class="muted">팀 4명에게 한 번에 배포하려면 Microsoft 365 관리 센터 → 설정 → 통합 앱 → 사용자 지정 앱 업로드 → 매니페스트 URL 로 같은 주소를 넣고 대상 사용자를 지정합니다(반영까지 최대 24시간).</p>
+
+<h2>2. 처음 열 때 연결 코드 입력</h2>
+<ol>
+  <li>sunnyahn@ 메일함에서 메일을 하나 엽니다.</li>
+  <li>메일 위쪽 도구 모음(또는 ‘…’ → 앱)에서 <b>KAHI 번역·요약</b>을 누릅니다.</li>
+  <li>처음 한 번 <b>연결 코드</b>를 붙여 넣고 저장합니다. 관리자에게 받은 코드이며 팀 4명 외에는 공유하지 않습니다.</li>
+  <li>창 오른쪽 위 핀(고정)을 누르면 메일을 옮겨 다녀도 창이 계속 열려 있습니다.</li>
+</ol>
+
+<h2>화면에 나오는 것</h2>
+<ul>
+  <li>크리에이터 이름·핸들·Core 여부, 대화 문서·드라이브 폴더·크리에이터 데스크 바로가기</li>
+  <li>회신 판단(회신 필요 / 결정 회신 / 불필요)과 이유</li>
+  <li>한 줄 요약과 주요 내용, 우리·상대가 할 일과 기한, 첨부 요약</li>
+  <li>국문 전문 번역(중요한 부분은 노란색 하이라이트), 같은 대화의 앞선 흐름</li>
+</ul>
+<p class="muted">새 메일은 Power Automate 가 약 10분마다 드라이브에 수집하고, 메일 AI 가 5분마다 번역·요약합니다. 아직 처리 전인 메일은 창에서 <b>지금 번역·요약 만들기</b>를 누르면 바로 만듭니다.</p>
+</main>
+<script>document.getElementById('mf').textContent=new URL('manifest.xml',location.href).href;</script>
+</body>
+</html>
