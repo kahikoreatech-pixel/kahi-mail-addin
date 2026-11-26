@@ -14,17 +14,18 @@
 
 <h2>1. Outlook 에 추가 (각자 한 번)</h2>
 <ol>
-  <li>Outlook 웹에서 <a href="https://aka.ms/olksideload" target="_blank" rel="noopener">aka.ms/olksideload</a> 를 엽니다. (‘추가 기능’ 창이 열립니다)</li>
-  <li><b>내 추가 기능</b> → 맨 아래 <b>사용자 지정 추가 기능</b> → <b>사용자 지정 추가 기능 추가 → URL에서 추가</b></li>
-  <li>이 주소를 넣습니다: <code id="mf">manifest.xml</code></li>
-  <li>설치 확인 창에서 <b>설치</b>를 누릅니다.</li>
+  <li><a href="manifest.xml" download="manifest.xml">manifest.xml 내려받기</a> — 등록 파일을 내 컴퓨터에 저장합니다.</li>
+  <li>Outlook 웹에서 <a href="https://outlook.cloud.microsoft/mail/inclientstore" target="_blank" rel="noopener">추가 기능 창</a>을 엽니다. (또는 메일을 열고 위쪽 앱 아이콘 → 추가 기능 가져오기)</li>
+  <li>왼쪽 <b>내 추가 기능</b> → 아래쪽 <b>추가 기능 사용자 지정</b> → <b>+ 사용자 지정 추가 기능 추가 → 파일에서 추가…</b></li>
+  <li>내려받은 manifest.xml 을 고르고 <b>설치</b>를 누릅니다. (회사 설정상 ‘URL에서 추가’는 쓸 수 없습니다)</li>
+  <li>Outlook 을 새로고침(F5)합니다.</li>
 </ol>
-<p class="muted">팀 4명에게 한 번에 배포하려면 Microsoft 365 관리 센터 → 설정 → 통합 앱 → 사용자 지정 앱 업로드 → 매니페스트 URL 로 같은 주소를 넣고 대상 사용자를 지정합니다(반영까지 최대 24시간).</p>
+<p class="muted">관리자가 Microsoft 365 관리 센터 → 설정 → 통합 앱 → 사용자 지정 앱 업로드로 같은 파일을 올리고 대상 사용자를 지정하면 각자 설치하지 않아도 됩니다(반영까지 최대 24시간).</p>
 
 <h2>2. 처음 열 때 연결 코드 입력</h2>
 <ol>
   <li>sunnyahn@ 메일함에서 메일을 하나 엽니다.</li>
-  <li>메일 위쪽 도구 모음(또는 ‘…’ → 앱)에서 <b>KAHI 번역·요약</b>을 누릅니다.</li>
+  <li>메일 위쪽 <b>앱 아이콘(네모 4개, 전달 화살표 오른쪽)</b> → <b>KAHI 번역·요약</b>을 누릅니다.</li>
   <li>처음 한 번 <b>연결 코드</b>를 붙여 넣고 저장합니다. 관리자에게 받은 코드이며 팀 4명 외에는 공유하지 않습니다.</li>
   <li>창 오른쪽 위 핀(고정)을 누르면 메일을 옮겨 다녀도 창이 계속 열려 있습니다.</li>
 </ol>
@@ -38,6 +39,5 @@
 </ul>
 <p class="muted">새 메일은 Power Automate 가 약 10분마다 드라이브에 수집하고, 메일 AI 가 5분마다 번역·요약합니다. 아직 처리 전인 메일은 창에서 <b>지금 번역·요약 만들기</b>를 누르면 바로 만듭니다.</p>
 </main>
-<script>document.getElementById('mf').textContent=new URL('manifest.xml',location.href).href;</script>
 </body>
 </html>
